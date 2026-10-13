@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Proxy</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; text-align: center; }
+        input[type="text"] { width: 60%; padding: 10px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        iframe { width: 100vh; height: 600px; margin-top: 20px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+    <h2>Web Proxy Client</h2>
+    <p>Enter a URL to browse through the proxy:</p>
+    
+    <input type="text" id="urlInput" placeholder="https://example.com">
+    <button onclick="loadProxy()">Go</button>
+
+    <br>
+    <!-- Using a public CORS/proxy service for demonstration -->
+    <iframe id="proxyFrame"></iframe>
+
+    <script>
+        function loadProxy() {
+            const url = document.getElementById('urlInput').value;
+            if (!url) return;
+            
+            // Example using a public proxy endpoint or your own backend worker
+            const encodedUrl = encodeURIComponent(url);
+            
+            // Note: Replace this with your actual backend proxy URL if self-hosted
+            document.getElementById('proxyFrame').src = `https://api.allorigins.win/raw?url=${encodedUrl}`;
+        }
+    </script>
+
+</body>
+</html>
